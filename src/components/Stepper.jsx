@@ -109,20 +109,20 @@ const Stepper = () => {
       </h1>
 
       {/* Step Indicator */}
-      <div className="flex items-center justify-between pl-[70px] mb-8">
+      <div className="flex items-center justify-center mb-8">
         {AllSteps.map((step, index) => (
-          <div key={index} className="flex-1">
+          <div key={index} className="flex justify-center items-center">
             <button
-              onClick={() => { 
-                if(index+1 === 1){
-                    setCurrentStep(index+1)
-                    return 
+              onClick={() => {
+                if (index + 1 === 1) {
+                  setCurrentStep(index + 1);
+                  return;
                 }
-                if(handleValidation(index+1)){
-                  setCurrentStep(index+1)
+                if (handleValidation(index + 1)) {
+                  setCurrentStep(index + 1);
                 }
-            }}
-              className={`flex items-center justify-center w-10 h-10 rounded-full text-white font-bold ${
+              }}
+              className={`flex items-center justify-center w-10 h-10  rounded-full text-white font-bold ${
                 currentStep === index + 1
                   ? "bg-blue-500"
                   : index + 1 < currentStep
@@ -132,6 +132,7 @@ const Stepper = () => {
             >
               {index + 1}
             </button>
+            {index !== AllSteps.length - 1 && <hr className="w-[120px]" />}
           </div>
         ))}
       </div>
@@ -207,7 +208,6 @@ const Stepper = () => {
         {currentStep < AllSteps.length + 1 ? (
           <button
             onClick={() => {
-
               if (handleValidation(currentStep + 1)) {
                 setCurrentStep(currentStep + 1);
               }
