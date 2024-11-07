@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const FormBuilder = () => {
   const [allSteps, setAllSteps] = useState([]);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleTitleChange = (index, value) => {
     const updatedSteps = [...allSteps];
@@ -14,7 +14,21 @@ const FormBuilder = () => {
   };
 
   const addStep = () => {
-    setAllSteps([...allSteps, { title: "", inputs: [] }]);
+    setAllSteps([
+      ...allSteps,
+      {
+        title: "",
+        inputs: [
+          {
+            name: "",
+            label: "",
+            type: "text",
+            id: "",
+            value: ""
+          }
+        ]
+      }
+    ]);
   };
 
   const removeStep = (stepIndex) => {
@@ -47,11 +61,10 @@ const FormBuilder = () => {
     setAllSteps(updatedSteps);
   };
 
-  // Save to localStorage on submit
   const handleSubmit = () => {
     localStorage.setItem("dynamicSteps", JSON.stringify(allSteps));
     alert("Steps saved successfully!");
-    navigate('/stepper')
+    navigate('/stepper');
   };
 
   return (
@@ -124,7 +137,7 @@ const FormBuilder = () => {
             onClick={() => addInputGroup(stepIndex)}
             className="bg-blue-500 text-white rounded-md px-4 py-2 mt-2 hover:bg-blue-600 focus:outline-none"
           >
-            Add Input Group
+            Add Input
           </button>
           <button
             onClick={() => removeStep(stepIndex)}
@@ -135,7 +148,6 @@ const FormBuilder = () => {
         </div>
       ))}
 
-      {/* Submit Button */}
       <button
         onClick={handleSubmit}
         className="w-full bg-blue-500 text-white rounded-md px-4 py-2 mt-6 hover:bg-blue-600 focus:outline-none"
