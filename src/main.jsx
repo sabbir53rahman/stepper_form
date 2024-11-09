@@ -8,6 +8,7 @@ import './index.css';
 import Stepper from './components/Stepper.jsx';
 import FormBuilder from './components/FormBuilder/FormBuilder.jsx';
 import Layout from './Layout/Layout.jsx';
+import HookForm from './components/HookForm/HookForm.jsx';
 
 // Define your routes, including children
 const router = createBrowserRouter([
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "", 
-        element: <FormBuilder />, 
+        element: <HookForm />, 
       },
       {
         path: "stepper", 
